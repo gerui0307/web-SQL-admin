@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello world!</title>
+    <link href="css/zui.min.css" rel="stylesheet">
+    <!-- zui -->
+	<style>
+	#S>tr>td>p.hissql,#S>tr>td.hissql{
+		cursor: pointer;
+		transition: all 0.5s;
+		-moz-transition: all 0.5s;	/* Firefox 4 */
+		-webkit-transition: all 0.5s;	/* Safari 和 Chrome */
+		-o-transition: all 0.5s;
+	}
+	#S>tr>td>p.hissql:hover,#S>tr>td.hissql:hover{
+		background-color: #dad;
+		color: #fff;
+	}
+	</style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">似{[}(])</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-collapse-example">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Web SQL admin</a>
+                </li>
+                <li>
+                    <a href="#">尔雅视频脚本</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Github</a></li>
+                        <li><a href="#">OSChina</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">个人网站</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">E-mail</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" data-target="#" class="icon-heart-empty">Github</a></li>
+        </ul>
+        </div><!-- /.navbar-collapse -->
+
+    </nav>
+</header>
+<div id="main">
+    <h1>Web SQL admin</h1>
+    <p>Web SQL是HTML5中新增的接口，本程序可以用来管理webSQL，适合SQL新手用来学习和测试SQL脚本。</p>
+    <p>数据完全保存在你的本地计算机中，无需网络连接也可正常使用。</p>
+    <div class="alert alert-success with-icon" id="success">
+        <i class="icon-ok-sign"></i>
+        <div class="content"><strong>太好了!</strong> 你的浏览器支持webSQL接口，<a href="#go" class="alert-link" id="go">现在开始使用</a>吧。</div>
+    </div>
+    <div class="alert alert-warning with-icon" id="error">
+        <i class="icon-frown"></i>
+        <div class="content"><strong>不好了!</strong> 你的浏览器不支持webSQL接口，建议更换为
+            <a href="#go" class="alert-link">Chrome浏览器</a>
+            。或者尝试在手机上打开本页面。一般的安卓浏览器均支持此接口。</div>
+    </div>
+    <div>
+        <h2>在下方运行SQL</h2>
+		<hr />
+        <div class="example">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="text" class="form-control" placeholder="数据库名" id="from" value="student" disabled>
+                        </div>
+                        <div class="btn-group">
+                            <input type="button" class="btn btn-danger" value="在此数据库中运行SQL" id="runsql">
+                            <input type="button" class="btn btn-default sqlbutton" value="创建表" name="" title="create table if not exists stu (id REAL UNIQUE, name TEXT)">
+                            <div class="btn-group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    更多
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupDrop1">
+                                    <li><a href="javascript:;" class="sqlbutton" title="select * from stu">显示表数据</a></li>
+                                    <li><a href="javascript:;" class="sqlbutton" title="insert into stu (id, name) values(1, 'lilei')">插入数据</a></li>
+                                    <li><a href="javascript:;" class="sqlbutton" title="update stu set name = '韩梅梅' where id= 1">修改数据</a></li>
+                                    <li><a href="javascript:;" class="sqlbutton" title="delete from  stu where id= 1">删除行</a></li>
+                                    <!--<li><a href="javascript:;">查看表结构</a></li>-->
+                                    <li class="divider"></li>
+                                    <li><a href="javascript:;">SELECT *</a></li>
+                                    <li><a href="javascript:;">WHRER</a></li>
+                                    <li><a href="javascript:;">ORDER BY</a></li>
+                                    <li><a href="javascript:;">INSERT INTO</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="javascript:;" class="sqlbutton" title="drop  table  stu">删除表</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <textarea class="form-control" placeholder="输入SQL，运行在数据库 student 中，如果数据库不存在则会自动创建" id="sqlbox"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" id="panel-body">
+                    <table class="table">
+                    </table>
+					<h3>历史记录
+					<button class="btn btn-link pull-right clshist">
+					清空历史记录
+					<span class="label label-badge label-info" id="histnum" data-id='0' >0条</span>
+					</button>
+					</h3>
+					<hr />
+					<table class="table">
+					<tbody id="S">
+						
+					</tbody>
+					</table>
+                </div>
+                <div class="panel-footer">面板脚注</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery (ZUI中的Javascript组件依赖于jQuery) -->
+<script src="jquery.js"></script>
+<!-- ZUI Javascript组件 -->
+<script src="js/zui.min.js"></script>
+<script src="./webSQL.js"></script>
+
+</body>
+</html>
